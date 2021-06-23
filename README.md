@@ -1,16 +1,22 @@
-# payflow
+# payflow App
 
-A new Flutter project.
+# A NLW app.
 
-## Getting Started
+## Sobre o projeto:
 
-This project is a starting point for a Flutter application.
+Aplicativo desenvolvido em Flutter no evento NLW together
 
-A few resources to get you started if this is your first Flutter project:
+## Descrição
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Função principal
+O app possibilita o cadastro e controle dos boletos, através do app é possível cadastrar boletos através do código de barras ou inserindo manualmente,
+possibilita o controle por data de vencimento e a checagem se o mesmo foi pago ou não.
+### Demais Funções 
+-Efetuar login social utilizando serviços de autenticação do Google.
+-Configuração de serviços Firebase.
+-Controle de sessão do usuário utilizando salvamento em memória do dispositivo.
+-Criação de Widgets personalizados.
+-Animações dinâmicas.
+-Navegação por rotas.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
