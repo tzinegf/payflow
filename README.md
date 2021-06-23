@@ -5,9 +5,6 @@
 ## Sobre o projeto:
 
 Aplicativo desenvolvido em Flutter no evento NLW together
-
-## Descrição
-
 ### Função principal
 O app possibilita o cadastro e controle dos boletos, através do app é possível cadastrar boletos através do código de barras ou inserindo manualmente,
 possibilita o controle por data de vencimento e a checagem se o mesmo foi pago ou não.
