@@ -13,15 +13,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final controller = HomeController();
   final pages = [
-     Container(
-      color: Colors.red,
-    ),
-    
     Container(
-      color: Colors.blue,
+      color: Colors.white,
     ),
     Container(
-      color: Colors.green,
+      color: Colors.white,
+    ),
+    Container(
+      color: Colors.white,
     )
   ];
 
@@ -53,6 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(5),
                 ),
+                child: Image.network(
+                  'https://avatars.githubusercontent.com/u/9843924?v=4',
+                ),
               ),
             ),
           ),
@@ -60,13 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: Container(
         height: 90,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter ,
-            colors: [Colors.white,Color.fromRGBO(255, 255, 255, 0.0)]
-          )
-        ),
         // color: Colors.black,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,9 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(
                 onPressed: () {
                   controller.setPage(0);
-                  setState(() {
-                    
-                  });
+                  setState(() {});
                 },
                 icon: Icon(
                   Icons.home,
@@ -88,29 +81,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 56,
                 decoration: BoxDecoration(
                     color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(5)),
+                    borderRadius: BorderRadius.circular(50)),
                 child: IconButton(
                     onPressed: () {
+                      //Navigator.pushNamed(context, '/barcodescanner');
+                      Navigator.pushNamed(context, '/insertboletopage');
+
                       controller.setPage(1);
-                setState(() {
-                    
-                  });
+                      setState(() {});
                     },
                     icon: Icon(
                       Icons.add_box_outlined,
                       color: AppColors.background,
                     )),
               ),
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
             IconButton(
                 onPressed: () {
                   controller.setPage(2);
-                  setState(() {
-                    
-                  });
+                  setState(() {});
                 },
                 icon: Icon(
                   Icons.description_outlined,

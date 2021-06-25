@@ -13,6 +13,11 @@ fontSize: 20,
 fontWeight: FontWeight.w400,
 color: AppColors.background,
 );
+static  final input = GoogleFonts.lexendDeca(
+fontSize: 15,
+fontWeight: FontWeight.w400,
+color: AppColors.input,
+);
 static  final titleBoldHeading = GoogleFonts.lexendDeca(
 fontSize: 20,
 fontWeight: FontWeight.w600,
