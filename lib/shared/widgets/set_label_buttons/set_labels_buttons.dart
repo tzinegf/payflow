@@ -43,6 +43,7 @@ class SetLabelButtons extends StatelessWidget {
                       child: LabelButton(
                     label: primaryLabel,
                     onTap: primaryOnTap,
+            
                     style: enablePrimaryColor? AppTextStyles.buttonPrimary:null,
                   )),
                   DividerVerticalWidget(),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:payflow/modules/boletos/boletos_screen.dart';
+import 'package:payflow/modules/extract_boletos/extract_screen.dart';
 import 'package:payflow/modules/home/home_controller.dart';
+import 'package:payflow/shared/models/user_model.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomeScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -12,18 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final controller = HomeController();
-  final pages = [
-    Container(
-      color: Colors.white,
-    ),
-    Container(
-      color: Colors.white,
-    ),
-    Container(
-      color: Colors.white,
-    )
-  ];
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: AppTextStyles.titleRegular,
                   children: [
                     TextSpan(
-                        text: 'Edson', style: AppTextStyles.titleBoldBackground)
+                        text: '${widget.user.name}',
+                        style: AppTextStyles.titleBoldBackground)
                   ])),
               subtitle: Text(
                 'Mantenha suas contas em dia',
@@ -52,8 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: Image.network(
-                  'https://avatars.githubusercontent.com/u/9843924?v=4',
+                child: Image.network(widget.user.photoUrl!
+                  ,
                 ),
               ),
             ),
@@ -73,7 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 icon: Icon(
                   Icons.home,
-                  color: AppColors.primary,
+                  color: controller.currentPage == 0
+                      ? AppColors.primary
+                      : AppColors.body,
                 )),
             GestureDetector(
               child: Container(
@@ -83,12 +79,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: AppColors.primary,
                     borderRadius: BorderRadius.circular(50)),
                 child: IconButton(
-                    onPressed: () {
-                      //Navigator.pushNamed(context, '/barcodescanner');
-                      Navigator.pushNamed(context, '/insertboletopage');
-
-                      controller.setPage(1);
-                      setState(() {});
+                    onPressed: () async{
+                      await Navigator.pushNamed(context, '/barcodescanner');
+                    setState(() {
+                      
+                    });
                     },
                     icon: Icon(
                       Icons.add_box_outlined,
@@ -99,17 +94,27 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             IconButton(
                 onPressed: () {
-                  controller.setPage(2);
+                  controller.setPage(1);
                   setState(() {});
                 },
                 icon: Icon(
                   Icons.description_outlined,
-                  color: AppColors.body,
+                  color: controller.currentPage == 1
+                      ? AppColors.primary
+                      : AppColors.body,
                 )),
           ],
         ),
       ),
-      body: pages[controller.currentPage],
+      body: [
+    BoletosScreen(
+      key: UniqueKey(),
+    ),
+   ExtractScreen(
+     key: UniqueKey(),
+   ),
+   
+  ][controller.currentPage],
     );
   }
 }

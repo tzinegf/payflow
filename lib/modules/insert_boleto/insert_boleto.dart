@@ -40,16 +40,17 @@ class _InsertBoletoState extends State<InsertBoleto> {
         elevation: 0,
         leading: BackButton(
           color: AppColors.input,
-        ), 
+        ),
       ),
       body: SingleChildScrollView(
-              child: Padding(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 93, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 93, vertical: 24),
                 child: Text(
                   'Preencha os dados do boleto',
                   style: AppTextStyles.titleBoldHeading,
@@ -67,14 +68,18 @@ class _InsertBoletoState extends State<InsertBoleto> {
                       validator: insertBoletoController.validateName,
                       textlabel: 'Nome do boleto',
                       iconData: Icons.description_outlined,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        insertBoletoController.onChange(name: value);
+                      },
                     ),
                     InputTextWidget(
                       validator: insertBoletoController.validateVencimento,
                       controller: dueDateInputTextController,
                       textlabel: 'Vencimento ',
                       iconData: FontAwesomeIcons.timesCircle,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        insertBoletoController.onChange(dueDate: value);
+                      },
                     ),
                     InputTextWidget(
                       validator: (_) => insertBoletoController
@@ -82,14 +87,18 @@ class _InsertBoletoState extends State<InsertBoleto> {
                       controller: moneyInputTextController,
                       textlabel: 'Valor',
                       iconData: FontAwesomeIcons.wallet,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        insertBoletoController.onChange(value: moneyInputTextController.numberValue);
+                      },
                     ),
                     InputTextWidget(
                       validator: insertBoletoController.validateCodigo,
                       controller: barCodeInputTextController,
                       textlabel: 'Código',
                       iconData: FontAwesomeIcons.barcode,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        insertBoletoController.onChange(codigo: value);
+                      },
                     ),
                   ],
                 ),
@@ -101,11 +110,14 @@ class _InsertBoletoState extends State<InsertBoleto> {
       bottomNavigationBar: SetLabelButtons(
         primaryLabel: 'Cancelar',
         primaryOnTap: () {
+          print('Ola');
           Navigator.pop(context);
         },
         secondaryLabel: 'Cadastrar',
-        secondaryOnTap: () {
-          insertBoletoController.cadBoleto();
+        secondaryOnTap: () async{
+          print('Ola');
+          await insertBoletoController.cadBoleto();
+          Navigator.pop(context);
         },
         enableSecundaryColor: true,
       ),
